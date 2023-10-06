@@ -1,13 +1,5 @@
-open Tyxml
+open View
 
-let page_title = Html.( title ( txt "WORDML" ))
+let start_board_page = 
+  Render.to_string (Page.page_layout [Board.start_board_body])
 
-let board = Html.(div [
-  txt "This is the start game board"
-])
-
-let start_game_board_page =
-  Render.to_string (Html.(html 
-    ( head page_title [] )
-    ( body [ board ] )))
-  

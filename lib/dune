@@ -1,6 +1,7 @@
 (library
  (name wordml)
  (libraries
+   wordml.view
    dream
    lwt
    tyxml

@@ -8,7 +8,7 @@ let main () =
   @@ cookie_sessions
   @@ router
     [ get "/" ( fun _req -> html ~status:`OK "Hello World")
-    ; get "/start" ( fun _req -> html ~status:`OK Handler.start_game_board_page)
+    ; get "/start" ( fun _req -> html ~status:`OK Handler.start_board_page)
     ]
 
 let () = main ()
