@@ -15,6 +15,13 @@
  (name wordml)
  (synopsis "An OCaml Wordle clone")
  (description "This is just for learning some OCaml frameworks and libraries")
- (depends ocaml dune)
+ (depends 
+  ocaml 
+  dune
+  dream
+  lwt
+  tyxml
+ )
+)
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project

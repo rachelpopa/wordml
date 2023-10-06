@@ -1,4 +1,8 @@
 (library
  (name wordml)
- (libraries dream) 
+ (libraries
+   dream
+   lwt
+   tyxml
+ ) 
 )
