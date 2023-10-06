@@ -1,0 +1,4 @@
+(library
+ (name wordml)
+ (libraries dream) 
+)
