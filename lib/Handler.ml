@@ -1,5 +1,5 @@
 open View
 
-let start_board_page = 
-  Render.to_string (Page.page_layout [Board.start_board_body])
+let start_game_page = 
+  Render.to_string (Page.page_layout [Game.game_body])
 
