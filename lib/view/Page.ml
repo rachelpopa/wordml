@@ -1,14 +1,21 @@
+let title_header =
+  let open Tyxml.Html in
+  div ~a:[ a_class [ "title-bar" ] ] 
+    [div ~a:[ a_class ["title-text"] ] [  txt "Wordml"  ]]
+
 
 let page_layout body_ =
   let open Tyxml.Html in
   html
     ~a:[ a_lang "en" ]
     ( head 
-      ( title ( txt "WORDML" ))
+      ( title ( txt "Wordml" ))
       [ meta ~a:[ a_charset "utf-8" ] () 
       ; link ~rel:[ `Stylesheet ] ~href:"/static/css/style.css" ()
       ]
     )
     ( body
-      body_
+      [ title_header
+      ; body_
+      ]
     )
