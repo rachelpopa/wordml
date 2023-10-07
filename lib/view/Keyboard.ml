@@ -1,14 +1,14 @@
 let keyboard_key letter =
   let open Tyxml.Html in
-  div [ txt letter ]
+  button ~a:[ a_class [ "keyboard-key" ] ] [ txt letter ]
 
 let keyboard_row keys =
   let open Tyxml.Html in
-  div keys 
+  div ~a:[ a_class [ "keyboard-row" ] ] keys 
 
 let keyboard = 
   let open Tyxml.Html in 
-  div 
+  div ~a:[ a_class [ "keyboard" ] ]
   [ keyboard_row 
     [ keyboard_key "Q"
     ; keyboard_key "W"
