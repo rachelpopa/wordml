@@ -34,4 +34,6 @@ let start_board =
 let game_body = 
   let open Tyxml.Html in
   div ~a:[ a_class [ "game-body" ] ]
-  [ start_board ]
+  [ start_board 
+  ; Keyboard.keyboard
+  ]
