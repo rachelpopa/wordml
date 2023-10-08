@@ -1,5 +1,7 @@
 (library 
  (public_name wordml.view)
  (name view)
- (libraries tyxml)
+ (libraries 
+  control
+  tyxml)
 )

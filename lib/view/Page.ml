@@ -1,3 +1,5 @@
+open Control 
+
 let title_header =
   let open Tyxml.Html in
   div ~a:[ a_class [ "title-bar" ] ] 
@@ -15,7 +17,9 @@ let page_layout body_ =
       ]
     )
     ( body
+      ~a:[ a_onkeydown Game.game_key_pressed ]
       [ title_header
+      ; script ~a:[ a_src "/static/js/game.js"] (txt "")
       ; body_
       ]
     )

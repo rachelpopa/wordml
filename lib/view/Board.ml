@@ -1,4 +1,3 @@
-
 let letter_input =
   let open Tyxml.Html in
     div ~a:[ a_class ["letter-input"] ] 
@@ -31,9 +30,10 @@ let start_board =
   [ board_input ]
 
 
-let game_body = 
+let board_body = 
   let open Tyxml.Html in
-  div ~a:[ a_class [ "game-body" ] ]
+  div ~a:
+  [ a_class [ "game-body" ]]
   [ start_board 
   ; Keyboard.keyboard
   ]

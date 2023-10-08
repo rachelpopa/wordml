@@ -2,6 +2,7 @@
  (name wordml)
  (libraries
    wordml.view
+   wordml.control
    dream
    lwt
    tyxml
