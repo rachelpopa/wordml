@@ -16,7 +16,7 @@ function keyPressed(event) {
 
 function gameInput(key) {
     if("enter" === key.toLowerCase()) {
-        document.getElementById("game-form").submit();
+        submitGuess();
     } 
     else if ("backspace" === key.toLowerCase() || "delete" === key.toLowerCase()) {
         removeLetter();
@@ -25,6 +25,12 @@ function gameInput(key) {
         addLetter(key.toUpperCase());
     }
     console.log(game_state[guessKey]);
+}
+
+function submitGuess() {
+    if (game_state[guessKey].length === 5) {
+        document.getElementById("game-form").submit();
+    }
 }
 
 function removeLetter() {
