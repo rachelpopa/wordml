@@ -17,7 +17,7 @@ let page_layout body_ =
       ]
     )
     ( body
-      ~a:[ a_onkeydown Game.game_key_pressed ]
+      ~a:[ a_onkeydown GameControl.key_pressed ]
       [ title_header
       ; script ~a:[ a_src "/static/js/game.js"] (txt "")
       ; body_

@@ -1,3 +1,11 @@
+let hidden_input name = 
+  let open Tyxml.Html in
+    input ~a:
+      [ a_hidden () 
+      ; a_id name
+      ; a_name name
+      ] ()
+
 let letter_input =
   let open Tyxml.Html in
     div ~a:[ a_class ["letter-input"] ] 
@@ -16,11 +24,17 @@ let word_input =
 let board_input = 
   let open Tyxml.Html in
   div ~a:[ a_class [ "board-input" ] ]
-  [ word_input
+  [ hidden_input "guess1"
   ; word_input
+  ; hidden_input "guess2"
   ; word_input
+  ; hidden_input "guess3"
   ; word_input
+  ; hidden_input "guess4"
   ; word_input
+  ; hidden_input "guess5"
+  ; word_input
+  ; hidden_input "guess6"
   ; word_input
   ]
 
@@ -32,8 +46,14 @@ let start_board =
 
 let board_body = 
   let open Tyxml.Html in
-  div ~a:
-  [ a_class [ "game-body" ]]
-  [ start_board 
-  ; Keyboard.keyboard
+  form ~a:
+    [ a_id "game-form"
+    ; a_action "/game/guess"
+    ; a_method `Post
+    ]
+    [ div ~a:
+      [ a_class [ "game-body" ] ]
+      [ start_board 
+      ; Keyboard.keyboard
+      ]
   ]
