@@ -9,7 +9,7 @@ let main () =
   @@ router
     [ get "/" ( fun _req -> html ~status:`OK "Hello World")
     ; get "/game" ( fun _req -> html ~status:`OK Handler.start_game_page)
-    ; post "/game/guess" ( fun request -> html ~status:`OK (Handler.next_game_page request))
+    ; post "/game/guess" ( fun request -> Handler.next_game_page request)
     ; get "/static/**" @@ Dream.static "static"
     ]
 

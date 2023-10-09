@@ -12,6 +12,7 @@ depends: [
   "dream"
   "lwt"
   "tyxml"
+  "yojson"
   "odoc" {with-doc}
 ]
 build: [

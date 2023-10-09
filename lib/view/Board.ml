@@ -41,13 +41,13 @@ let board_input =
   ; word_input "guess6"
   ]
 
-let start_board = 
+let start_board _game_state = 
   let open Tyxml.Html in
   div ~a:[ a_class [ "board-container" ] ]
   [ board_input ]
 
 
-let board_body = 
+let board_body game_state = 
   let open Tyxml.Html in
   form ~a:
     [ a_id "game-form"
@@ -56,7 +56,7 @@ let board_body =
     ]
     [ div ~a:
       [ a_class [ "game-body" ] ]
-      [ start_board 
-      ; Keyboard.keyboard
+      [ start_board game_state
+      ; Keyboard.keyboard game_state
       ]
   ]

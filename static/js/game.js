@@ -37,6 +37,7 @@ function removeLetter() {
     if(game_state[guessKey].length > 0) {
         game_state[guessKey] = game_state[guessKey].slice(0, -1);
         document.getElementById(guessKey + "-" + (game_state[guessKey].length + 1)).innerHTML = "";
+        document.getElementById(guessKey).value = game_state[guessKey];
     }
 }
 
@@ -44,5 +45,6 @@ function addLetter(letter) {
     if(game_state[guessKey].length < 5) {
         game_state[guessKey] = (game_state[guessKey] + letter);
         document.getElementById(guessKey + "-" + game_state[guessKey].length).innerHTML = letter;
+        document.getElementById(guessKey).value = game_state[guessKey];
     }
 }

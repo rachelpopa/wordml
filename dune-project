@@ -21,6 +21,7 @@
   dream
   lwt
   tyxml
+  yojson
  )
 )
 

@@ -12,7 +12,7 @@ let keyboard_row keys =
   let open Tyxml.Html in
   div ~a:[ a_class [ "keyboard-row" ] ] keys 
 
-let keyboard = 
+let keyboard _game_state = 
   let open Tyxml.Html in 
   div ~a:[ a_class [ "keyboard" ] ]
   [ keyboard_row 
