@@ -19,12 +19,24 @@ function gameInput(key) {
         document.getElementById("game-form").submit();
     } 
     else if ("backspace" === key.toLowerCase() || "delete" === key.toLowerCase()) {
-        if(game_state[guessKey].length > 0) {
-            game_state[guessKey] = game_state[guessKey].slice(0, -1);
-        }
+        removeLetter();
     }
     else {
-        game_state[guessKey] = (game_state[guessKey] + key.toUpperCase());
+        addLetter(key.toUpperCase());
     }
     console.log(game_state[guessKey]);
+}
+
+function removeLetter() {
+    if(game_state[guessKey].length > 0) {
+        game_state[guessKey] = game_state[guessKey].slice(0, -1);
+        document.getElementById(guessKey + "-" + (game_state[guessKey].length + 1)).innerHTML = "";
+    }
+}
+
+function addLetter(letter) {
+    if(game_state[guessKey].length < 5) {
+        game_state[guessKey] = (game_state[guessKey] + letter);
+        document.getElementById(guessKey + "-" + game_state[guessKey].length).innerHTML = letter;
+    }
 }

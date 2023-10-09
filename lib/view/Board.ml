@@ -6,36 +6,39 @@ let hidden_input name =
       ; a_name name
       ] ()
 
-let letter_input =
+let letter_input name =
   let open Tyxml.Html in
-    div ~a:[ a_class ["letter-input"] ] 
-    [ txt "L" ]
+    div ~a:
+    [ a_id name
+    ; a_class ["letter-input"] 
+    ] 
+    [ txt "" ]
 
-let word_input =
+let word_input name =
   let open Tyxml.Html in
   div ~a:[ a_class [ "word-input" ] ] 
-  [ letter_input
-  ; letter_input
-  ; letter_input
-  ; letter_input
-  ; letter_input
+  [ letter_input (name ^ "-1")
+  ; letter_input (name ^ "-2")
+  ; letter_input (name ^ "-3")
+  ; letter_input (name ^ "-4")
+  ; letter_input (name ^ "-5")
   ]
 
 let board_input = 
   let open Tyxml.Html in
   div ~a:[ a_class [ "board-input" ] ]
   [ hidden_input "guess1"
-  ; word_input
+  ; word_input "guess1"
   ; hidden_input "guess2"
-  ; word_input
+  ; word_input "guess2"
   ; hidden_input "guess3"
-  ; word_input
+  ; word_input "guess3"
   ; hidden_input "guess4"
-  ; word_input
+  ; word_input "guess4"
   ; hidden_input "guess5"
-  ; word_input
+  ; word_input "guess5"
   ; hidden_input "guess6"
-  ; word_input
+  ; word_input "guess6"
   ]
 
 let start_board = 
