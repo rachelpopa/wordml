@@ -1,12 +1,30 @@
 open View
+open Board
 
 let start_game_page = 
-  Render.to_string (Page.page_layout (Board.board_body Json.empty_json))
+  Render.to_string (Page.page_layout (Board.board_body ()))
 
 let next_game_page request =
-  let%lwt body = Dream.body request in
-  let json = Json.from_string body in
-  match json with
-  | Ok(game_state) -> Dream.html ~status:`OK (Render.to_string (Page.page_layout (Board.board_body game_state)))
-  | Error _e -> Dream.html ~status:`Bad_Request "Improperly formed json"
+  let%lwt mbody = Dream.body request in
+  let () = print_endline(mbody) in
+  match%lwt Dream.form request with
+  | `Ok [ "guess1", g1
+        ; "guess2", g2
+        ; "guess3", g3
+        ; "guess4", g4
+        ; "guess5", g5
+        ; "guess6", g6
+        ; "current_guess", c
+        ] -> 
+          Dream.html ~status:`OK (
+            Render.to_string (Page.page_layout (Board.board_body ~game_state:(
+              { current_guess = c
+              ; guess1 = g1
+              ; guess2 = g2
+              ; guess3 = g3
+              ; guess4 = g4
+              ; guess5 = g5
+              ; guess6 = g6
+              }) ())))
+  | _ -> Dream.html ~status:`Bad_Request "Bad form data"
   
