@@ -69,16 +69,17 @@ let start_board game_state =
   ; hidden_input "current_guess" game_state.current_guess
   ]
 
-let board_body ?(game_state = start_game_state) () = 
+let board_body ?(game_state = start_game_state) csrf_tag = 
   let open Tyxml.Html in
   form ~a:
     [ a_id "game-form"
     ; a_action "/game/guess"
     ; a_method `Post
     ]
-    [ div ~a:
+    [ csrf_tag
+    ; div ~a:
       [ a_class [ "game-body" ] ]
       [ start_board game_state
       ; Keyboard.keyboard game_state
       ]
-  ]
+    ]

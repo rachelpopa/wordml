@@ -8,8 +8,8 @@ let main () =
   @@ cookie_sessions
   @@ router
     [ get "/" ( fun _req -> html ~status:`OK "Hello World")
-    ; get "/game" ( fun _req -> html ~status:`OK Handler.start_game_page)
-    ; post "/game/guess" ( fun request -> Handler.next_game_page request)
+    ; get "/game" Handler.start_game_page
+    ; post "/game/guess" Handler.next_game_page
     ; get "/static/**" @@ Dream.static "static"
     ]
 
