@@ -1,5 +1,3 @@
-open Util
-
 type game_state = {
   current_guess: string;
   guess1: string;
@@ -42,7 +40,7 @@ let letter_inputs name value =
     match value with
     | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "") :: aux (n+1) value
     | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h)) :: aux (n+1) t
-  in aux 1 (StringUtil.explode_string value)
+  in aux 1 (Util.String.explode_string value)
 
 let word_input name value =
   let open Tyxml.Html in

@@ -2,7 +2,7 @@
  (public_name wordml.view)
  (name view)
  (libraries 
-  control
-  util
+  wordml.control
+  wordml.util
   tyxml)
 )

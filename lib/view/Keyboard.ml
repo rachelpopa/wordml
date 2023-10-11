@@ -1,10 +1,8 @@
-open Control
-
 let keyboard_key ?(size_class = "small") key_label =
   let open Tyxml.Html in
   button ~a:[ a_class [ "keyboard-key"; size_class ] 
             ; a_button_type `Button
-            ; a_onclick (GameControl.game_input key_label)
+            ; a_onclick (Control.Game.game_input key_label)
             ] 
   [ txt key_label ]
 
