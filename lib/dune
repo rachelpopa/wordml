@@ -4,6 +4,7 @@
  (libraries
    wordml.view
    wordml.control
+   wordml.util
    dream
    lwt
    tyxml

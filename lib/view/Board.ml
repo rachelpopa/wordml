@@ -1,3 +1,5 @@
+open Util
+
 type game_state = {
   current_guess: string;
   guess1: string;
@@ -27,39 +29,41 @@ let hidden_input name value =
       ; a_value value
       ] ()
 
-let letter_input name =
+let letter_input name value =
   let open Tyxml.Html in
     div ~a:
     [ a_id name
     ; a_class ["letter-input"] 
     ] 
-    [ txt "" ]
+    [ txt value ]
 
-let word_input name =
+let letter_inputs name value =
+  let rec aux n value = 
+    match value with
+    | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "") :: aux (n+1) value
+    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h)) :: aux (n+1) t
+  in aux 1 (StringUtil.explode_string value)
+
+let word_input name value =
   let open Tyxml.Html in
   div ~a:[ a_class [ "word-input" ] ] 
-  [ letter_input (name ^ "-1")
-  ; letter_input (name ^ "-2")
-  ; letter_input (name ^ "-3")
-  ; letter_input (name ^ "-4")
-  ; letter_input (name ^ "-5")
-  ]
+  (letter_inputs name value)
 
 let board_input game_state = 
   let open Tyxml.Html in
   div ~a:[ a_class [ "board-input" ] ]
   [ hidden_input "guess1" game_state.guess1
-  ; word_input "guess1"
+  ; word_input "guess1" game_state.guess1
   ; hidden_input "guess2" game_state.guess2
-  ; word_input "guess2"
+  ; word_input "guess2" game_state.guess2
   ; hidden_input "guess3" game_state.guess3
-  ; word_input "guess3"
+  ; word_input "guess3" game_state.guess3
   ; hidden_input "guess4" game_state.guess4
-  ; word_input "guess4"
+  ; word_input "guess4" game_state.guess4
   ; hidden_input "guess5" game_state.guess5
-  ; word_input "guess5"
+  ; word_input "guess5" game_state.guess5
   ; hidden_input "guess6" game_state.guess6
-  ; word_input "guess6"
+  ; word_input "guess6" game_state.guess6
   ]
 
 let start_board game_state = 
