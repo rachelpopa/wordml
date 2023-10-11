@@ -1,22 +1,4 @@
-type game_state = {
-  current_guess: string;
-  guess1: string;
-  guess2: string;
-  guess3: string;
-  guess4: string;
-  guess5: string;
-  guess6: string
-} 
-
-let start_game_state = {
-  current_guess = "1";
-  guess1 = "";
-  guess2 = "";
-  guess3 = "";
-  guess4 = "";
-  guess5 = "";
-  guess6 = ""
-}
+open State.Game
 
 let hidden_input name value = 
   let open Tyxml.Html in
@@ -68,10 +50,10 @@ let start_board game_state =
   let open Tyxml.Html in
   div ~a:[ a_class [ "board-container" ] ]
   [ board_input game_state 
-  ; hidden_input "current_guess" game_state.current_guess
+  ; hidden_input "current_guess" (string_of_int game_state.current_guess)
   ]
 
-let board_body ?(game_state = start_game_state) csrf_tag = 
+let board_body ?(game_state = State.Game.start_game_state) csrf_tag = 
   let open Tyxml.Html in
   form ~a:
     [ a_id "game-form"

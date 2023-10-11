@@ -5,6 +5,8 @@
    wordml.view
    wordml.control
    wordml.util
+   wordml.state
+   wordml.game
    dream
    lwt
    tyxml

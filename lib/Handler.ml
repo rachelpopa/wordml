@@ -1,5 +1,6 @@
 open View
-open Board
+open State.Game
+open Game
 
 let start_game_page request = 
   Dream.html ~status:`OK (Render.to_string (Page.page_layout (Board.board_body ( Csrf.render request ))))
@@ -16,14 +17,18 @@ let next_game_page request =
         ; "guess5", g5
         ; "guess6", g6
         ] -> 
+          let game_state = 
+            { current_guess = (int_of_string c) (* Risky probably *)
+            ; guess1 = g1
+            ; guess2 = g2
+            ; guess3 = g3
+            ; guess4 = g4
+            ; guess5 = g5
+            ; guess6 = g6
+            } in
           Dream.html ~status:`OK (
-            Render.to_string (Page.page_layout (Board.board_body ~game_state:(
-              { current_guess = c
-              ; guess1 = g1
-              ; guess2 = g2
-              ; guess3 = g3
-              ; guess4 = g4
-              ; guess5 = g5
-              ; guess6 = g6
-              }) ( Csrf.render request ))))
+            Render.to_string (
+                Page.page_layout (Board.board_body ~game_state:(Guess.execute game_state) ( Csrf.render request ))
+              )
+          )
   | _ -> Dream.html ~status:`Bad_Request "Bad form data"

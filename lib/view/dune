@@ -4,5 +4,6 @@
  (libraries 
   wordml.control
   wordml.util
+  wordml.state
   tyxml)
 )
