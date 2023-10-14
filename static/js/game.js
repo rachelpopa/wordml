@@ -8,7 +8,19 @@ var game_state = {
     guess6: ""
 }
 
-var guessKey = "guess" + game_state.current_guess;
+var guessKey;
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadGameStateFromForm()
+ }, false);
+
+function loadGameStateFromForm() {
+    game_state.current_guess = document.getElementById("current_guess").value;
+    for(i = 1; i <= 5; i++) {
+        game_state["guess" + i] = document.getElementById("guess" + i).value;
+    }
+    guessKey = "guess" + game_state.current_guess;
+}
 
 function keyPressed(event) {
     gameInput(event.key)
