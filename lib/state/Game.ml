@@ -1,5 +1,5 @@
 type game_state = {
-  mutable current_guess: int;
+  current_guess: int;
   guess1: string;
   guess2: string;
   guess3: string;
