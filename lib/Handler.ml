@@ -22,12 +22,13 @@ let next_game_page request =
             | Some(curr_guess) -> 
                       let game_state = 
                         { current_guess = curr_guess
-                        ; guess1 = g1
-                        ; guess2 = g2
-                        ; guess3 = g3
-                        ; guess4 = g4
-                        ; guess5 = g5
-                        ; guess6 = g6
+                        ; guesses = [ g1
+                                    ; g2
+                                    ; g3
+                                    ; g4
+                                    ; g5
+                                    ; g6
+                                    ]
                         } in
                         Dream.html ~status:`OK (
                           Render.to_string (
