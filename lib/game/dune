@@ -2,5 +2,6 @@
   (public_name wordml.game)
   (name game)
   (libraries 
-   wordml.state)
+   wordml.state
+   wordml.util)
 )

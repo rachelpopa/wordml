@@ -113,3 +113,15 @@ body {
 .keyboard-key.large {
     width: px;
 }
+
+.black {
+    background-color: #131313;
+}
+
+.yellow {
+    background-color: #b59f3b;
+}
+
+.green {
+    background-color: #538d4e;
+}

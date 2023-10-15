@@ -1,15 +1,9 @@
 open State.Game
 
-let solution = "ghost"  (* TODO: Load this from db *)
+let solution = "GHOST"  (* TODO: Load this from db *)
 
 let increment_current_guess game_state =
-  { current_guess = game_state.current_guess + 1
-  ; guess1 = game_state.guess1
-  ; guess2 = game_state.guess2
-  ; guess3 = game_state.guess3
-  ; guess4 = game_state.guess4
-  ; guess5 = game_state.guess5
-  ; guess6 = game_state.guess6 }
+  { game_state with current_guess = game_state.current_guess + 1 }
 
 let execute game_state = (* TODO: LMAO change guesses to a list probably *)
   match (game_state.current_guess) with
@@ -20,3 +14,15 @@ let execute game_state = (* TODO: LMAO change guesses to a list probably *)
   | 5 -> if (String.length game_state.guess5) = 5 then (increment_current_guess game_state) else game_state
   | _ -> game_state
 
+let get_colour letter_guess position =
+  let rec aux index solution_letters colour =
+    match solution_letters with
+    | [] -> colour
+    | h::t -> if h = letter_guess then
+              begin
+                match index with 
+                | i when i = position -> "green"
+                | _ -> aux (index + 1) t "yellow"
+              end
+              else aux (index + 1) t colour
+  in aux 1 (Util.String.explode_string solution) "black"

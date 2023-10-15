@@ -9,19 +9,21 @@ let hidden_input name value =
       ; a_value value
       ] ()
 
-let letter_input name value =
+let letter_input name value colour =
   let open Tyxml.Html in
     div ~a:
     [ a_id name
-    ; a_class ["letter-input"] 
+    ; a_class ["letter-input"
+              ; colour
+              ]
     ] 
     [ txt value ]
 
 let letter_inputs name value =
   let rec aux n value = 
     match value with
-    | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "") :: aux (n+1) value
-    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h)) :: aux (n+1) t
+    | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "" "black") :: aux (n+1) value
+    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h) (Game.Guess.get_colour h n)) :: aux (n+1) t
   in aux 1 (Util.String.explode_string value)
 
 let word_input name value =
