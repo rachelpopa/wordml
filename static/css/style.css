@@ -97,7 +97,6 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    background-color: #818384;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -116,6 +115,14 @@ body {
 
 .black {
     background-color: #131313;
+}
+
+.light-grey {
+    background-color: #818384;
+}
+
+.grey {
+    background-color: #3A3A3C;
 }
 
 .yellow {

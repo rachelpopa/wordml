@@ -14,7 +14,7 @@ let letter_inputs name value =
   let rec aux n value = 
     match value with
     | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "" "black") :: aux (n+1) value
-    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h) (Game.Guess.get_colour h n)) :: aux (n+1) t
+    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h) (Game.Colour.get_colour h n)) :: aux (n+1) t
   in aux 1 (Util.String.explode_string value)
 
 let hidden_input name value = 
