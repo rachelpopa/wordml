@@ -33,7 +33,7 @@ function gameInput(key) {
     else if ("backspace" === key.toLowerCase() || "delete" === key.toLowerCase()) {
         removeLetter();
     }
-    else if(key.toUpperCase().match(/[A-Z]/i)) {
+    else if(key.length === 1 && key.toUpperCase().match(/[A-Z]/i)) {
         addLetter(key.toUpperCase());
     }
     console.log(game_state[guessKey]);
