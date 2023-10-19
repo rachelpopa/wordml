@@ -10,11 +10,14 @@ let letter_input name value colour =
     ] 
     [ txt value ]
 
+let empty_letter_input name =
+  letter_input name "" "black"
+
 let letter_inputs name value =
-  let rec aux n value = 
-    match value with
-    | [] -> if n > 5 then [] else (letter_input (name ^ "-" ^ (string_of_int n)) "" "black") :: aux (n+1) value
-    | h::t -> (letter_input (name ^ "-" ^ (string_of_int n)) (Char.escaped h) (Game.Colour.get_colour h (n-1))) :: aux (n+1) t
+  let rec aux i value_letters = 
+    match value_letters with
+    | [] -> if i > 5 then [] else (empty_letter_input (name ^ "-" ^ (string_of_int i))) :: aux (i + 1) value_letters
+    | h::t -> (letter_input (name ^ "-" ^ (string_of_int i)) (Char.escaped h) (Game.Colour.get_guess_colour value h (i - 1))) :: aux (i + 1) t
   in aux 1 (Util.String.explode_string value)
 
 let hidden_input name value = 

@@ -11,6 +11,24 @@ let get_colour letter_guess position =
               else aux (index + 1) t colour
   in aux 0 (Util.String.explode_string Guess.solution) "grey"
 
+let get_guess_colour guess letter_guess position =
+  let colour = get_colour letter_guess position
+  in if colour = "yellow" then 
+    begin
+      let rec aux i guess_letters =
+        match guess_letters with
+        | [] -> colour
+        | h::t -> if (h = letter_guess) && (i <> position) then
+                    begin
+                      match get_colour letter_guess i with
+                      | other_colour when other_colour = "green" -> "grey"
+                      | _ -> colour
+                    end
+                  else  aux (i + 1) t
+      in aux 0 (Util.String.explode_string guess)
+    end
+  else colour
+
 let get_key_colour key guesses =
   let rec aux guess_string colour = 
     if colour = "green" then colour
